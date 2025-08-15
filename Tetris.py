@@ -47,9 +47,17 @@ def place_shape():
             del grid[i]
             grid.insert(0, [0 for _ in range(10)])
             score += 100
-    current_shape = random.choice(shapes)
-    current_color = random.choice(colors)
-    shape_x, shape_y = 3, 0
+    # Try to spawn a new piece
+    new_shape = random.choice(shapes)
+    new_color = random.choice(colors)
+    new_x, new_y = 3, 0
+    if not can_move(new_shape, new_x, new_y):
+        global running
+        running = False
+    else:
+        current_shape = new_shape
+        current_color = new_color
+        shape_x, shape_y = new_x, new_y
 
 running = True
 fall_time = 0
@@ -65,6 +73,11 @@ while running:
                 shape_x += 1
             if event.key == pygame.K_DOWN and can_move(current_shape, shape_x, shape_y + 1):
                 shape_y += 1
+            if event.key == pygame.K_UP:
+                # Rotate the shape clockwise
+                rotated_shape = [list(row) for row in zip(*current_shape[::-1])]
+                if can_move(rotated_shape, shape_x, shape_y):
+                    current_shape = rotated_shape
 
     fall_time += clock.get_time()
     if fall_time >= 500:
