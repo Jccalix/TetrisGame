@@ -1,4 +1,3 @@
-<!--
 # TetrisGame
 
 This project is a Python implementation of the classic Tetris game. The game features intuitive controls, colorful graphics, and increasing difficulty as you progress. It is designed for both beginners and experienced players who want to enjoy a nostalgic gaming experience or learn about game development in Python.
@@ -23,4 +22,3 @@ Contributions are welcome! Please fork the repository and submit a pull request 
 ## License
 
 This project is licensed under the MIT License.
--->
